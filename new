@@ -1,0 +1,35 @@
+
+import spacy
+#Requisitos
+#pip3 install spacy
+#python3 -m spacy download es_core_news_lg
+
+def procesar_texto(texto):
+    # Carga el modelo spaCy
+    nlp = spacy.load("es_core_news_lg")
+    
+    # Procesa el texto
+    doc = nlp(texto)
+    
+    # Imprime información sobre cada token
+    # for token in doc:
+    #     print(f"{token.text:20} {token.pos_:20} {token.dep_} {spacy.explain(token.pos_)}")
+
+    # Imprime información sobre ADJ
+    for token in doc:
+        if token.pos_ == "ADJ":  # Filtra los adjetivos
+            print(token.text)
+        
+if __name__ == "__main__":
+    import sys
+    
+    # Verifica si se proporcionó un argumento en la línea de comandos
+    if len(sys.argv) != 2:
+        print("Error: bias_remover.py 'texto_to_process'")
+        sys.exit(1)
+    
+    # Obtén el texto de la línea de comandos
+    texto_a_procesar = sys.argv[1]
+    
+    # Llama a la función para procesar el texto
+    procesar_texto(texto_a_procesar)
