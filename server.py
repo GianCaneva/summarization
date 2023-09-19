@@ -1,6 +1,9 @@
 import json
 from flask import Flask, request, jsonify
 from bias_remover import remove_bias
+#Model 1
+#from summarization_mt5_base_dacsa_es import summarize_text
+#Model 2
 from summarization_mt5_small_mlsum import summarize_text
 #To run: python3 flask_server.py
 
@@ -20,4 +23,4 @@ def receive_text():
         return jsonify(response), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8081)

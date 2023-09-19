@@ -12,4 +12,6 @@ def summarize_text(request):
     print("Max extension value:", max_text_extension)
     print("Min extension value:", min_text_extension)
 
-    return summarizer(remove_bias(received_text), max_length=int(max_text_extension), min_length=int(min_text_extension), do_sample=False)
+    response = summarizer(remove_bias(received_text), max_length=int(max_text_extension), min_length=int(min_text_extension), do_sample=False)[0]['summary_text']
+    print ("Model 1:" + response)
+    return response
