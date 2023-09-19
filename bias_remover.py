@@ -1,10 +1,10 @@
 import spacy
-#Requisitos
+#Requirements
 #pip3 install spacy
 #python3 -m spacy download es_core_news_lg
 
 
-def remove(texto):
+def remove_bias(texto):
     # Loads spacy module
     nlp = spacy.load("es_core_news_lg")
     
@@ -48,4 +48,4 @@ def remove(texto):
 
 # Sample
 texto_ejemplo = "Este es un hermoso, cálido y soleado día de verano."
-texto_sin_adjetivos = remove(texto_ejemplo)
+texto_sin_adjetivos = remove_bias(texto_ejemplo)
