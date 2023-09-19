@@ -5,45 +5,47 @@ import spacy
 
 
 def remove(texto):
-    # Carga el modelo spacy
+    # Loads spacy module
     nlp = spacy.load("es_core_news_lg")
     
-    # Procesa el texto
+    # Text process
     doc = nlp(texto)
     
-    # Inicializa una lista para almacenar las palabras que no son adjetivos
-    palabras_no_adj = []
+    # Non-adjetive list
+    non_adj_words = []
     
-    # Variable para rastrear si el token anterior fue un adjetivo
-    adj_anterior = False
-    token_ant = ""
+    # Check if the previous token was an adjetive
+    previous_adj = False
+    previous_token = ""
 
-    # Recorre los tokens del texto
+    # Iterate through the tokens in the text
     for token in doc:
         if token.pos_ == "ADJ":
-            # Si el token actual es un adjetivo y el anterior también lo fue, omite el token actual
-            if adj_anterior:
+            # If the current token is an adjective and the previous one was also an adjective, skip the current token
+            if previous_adj:
                 continue
-            # Si el token anterior fue un adjetivo, verifica si hay una coma o un conector antes
-            if adj_anterior and (token.text == "," or token.text.lower() in ["y", "u"]):
+            # If the previous token was an adjective, check to see if there is a comma or connector before it
+            if previous_adj and (token.text == "," or token.text.lower() in ["y", "u"]):
                 continue
-            if adj_anterior and (token_ant == "," or token_ant.lower() in ["y", "u"]):
-                palabras_no_adj.pop()
-            adj_anterior = True
+            # If the previous token was an adjective, check to see if there is a comma or connector before it. If it is, remove the last element in the Non-Adjetive list
+            if previous_adj and (previous_token == "," or previous_token.lower() in ["y", "u"]):
+                non_adj_words.pop()
+            previous_adj = True
         elif (token.text == "," or token.text.lower() in ["y", "u"]):
             continue
         else:
-            adj_anterior = False
-            palabras_no_adj.append(token.text)
+            previous_adj = False
+            non_adj_words.append(token.text)
 
-        token_ant = token.text
+        previous_token = token.text
         
  
-    # Une las palabras en una cadena de texto
-    texto_sin_adjetivos = " ".join(palabras_no_adj)
+    # Join the words in a text string
+    text_without_adjetives = " ".join(non_adj_words)
     
-    return texto_sin_adjetivos.strip()
+    # return text without adjetives and extra spaces in the text
+    return text_without_adjetives.strip()
 
-# Ejemplo de uso
+# Sample
 texto_ejemplo = "Este es un hermoso, cálido y soleado día de verano."
 texto_sin_adjetivos = remove(texto_ejemplo)
