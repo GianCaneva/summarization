@@ -8,7 +8,7 @@ def summarize_text(request):
     max_text_extension = request.args.get('maxTextExtension')
     min_text_extension = request.args.get('minTextExtension')
     
-    print("Received Text:", received_text)
+    #print("Received Text:", received_text)
     print("Max extension value:", max_text_extension)
     print("Min extension value:", min_text_extension)
 
