@@ -6,7 +6,7 @@ import spacy
 
 def remove_bias(texto):
     # Loads spacy module
-    nlp = spacy.load("es_core_news_lg")
+    nlp = spacy.load("es_dep_news_trf") #es_dep_news_trf/es_core_news_lg
     
     # Text process
     doc = nlp(texto)
