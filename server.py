@@ -4,8 +4,12 @@ from bias_remover import remove_bias
 #Model 1
 #from summarization_mt5_base_dacsa_es import summarize_text
 #Model 2
-from summarization_mt5_small_mlsum import summarize_text
-#To run: python3 flask_server.py
+#from summarization_mt5_small_mlsum import summarize_text
+#Model 3
+from summarization_spacy import summarize_text
+from keywords_spacy import getKeywords
+
+#To run: python3 server.py
 
 app = Flask(__name__)
 
@@ -15,6 +19,20 @@ def receive_text():
     try:
         # Pre-trained model responsible for summmarizing text
         response = remove_bias(summarize_text(request))
+        return json.dumps(response, ensure_ascii=False), 200
+       
+    except Exception as e:
+        print("Error:", str(e))
+        response = {'error': 'There was an error processing the request.'}
+        return jsonify(response), 500
+    
+
+    
+@app.route('/api/keywords', methods=['POST'])
+def receive_keywords():
+    try:
+        # Pre-trained model responsible for summmarizing text
+        response = getKeywords(request)
         return json.dumps(response, ensure_ascii=False), 200
        
     except Exception as e:
