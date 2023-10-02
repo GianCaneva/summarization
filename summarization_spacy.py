@@ -11,20 +11,21 @@ def summarize_text(request):
 
     text = request.data.decode('utf-8')
     textExtension = request.args.get('textExtension')
-
+    print("////////////0/////")
+    print(textExtension)
     #required mapping to adapt previous model
     extension_mapping = {
-        100: 3,
-        200: 6,
-        300: 9,
-        400: 11,
-        500: 12,
-        600: 13,
-        700: 14,
+        '100': 3,
+        '200': 6,
+        '300': 9,
+        '400': 11,
+        '500': 12,
+        '600': 13,
+        '700': 14,
     }
 
-    article_Extension = extension_mapping.get(textExtension, "Valor de textExtension no válido")
-    print("////////////0/////")
+    article_Extension = extension_mapping.get(textExtension, "Valor de textExtension no válido.")
+    print("////////////1/////")
     print(article_Extension)
 
     doc=nlp(text)

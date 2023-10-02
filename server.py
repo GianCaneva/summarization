@@ -4,7 +4,7 @@ from bias_remover import remove_bias
 #Model 1
 #from summarization_mt5_base_dacsa_es import summarize_text
 #Model 2
-#from summarization_mt5_small_mlsum import summarize_text
+from summarization_mt5_small_mlsum import summarize_text as summarize_text_2
 #Model 3
 from summarization_spacy import summarize_text
 from keywords_spacy import getKeywords
@@ -13,7 +13,7 @@ from keywords_spacy import getKeywords
 
 app = Flask(__name__)
 
-@app.route('/api/receive', methods=['POST'])
+@app.route('/api/summarize/article', methods=['POST'])
 def receive_text():
 
     try:
@@ -27,7 +27,19 @@ def receive_text():
         return jsonify(response), 500
     
 
-    
+@app.route('/api/summarize/title', methods=['POST'])
+def receive_title():
+    try:
+        # Pre-trained model responsible for summmarizing text
+        response = remove_bias(summarize_text_2(request))
+        return json.dumps(response, ensure_ascii=False), 200
+       
+    except Exception as e:
+        print("Error:", str(e))
+        response = {'error': 'There was an error processing the request.'}
+        return jsonify(response), 500
+
+
 @app.route('/api/keywords', methods=['POST'])
 def receive_keywords():
     try:

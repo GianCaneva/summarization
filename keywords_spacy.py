@@ -25,9 +25,10 @@ def getKeywords(request):
     freq_word = Counter(keyword).most_common(5)
     palabras = [palabra for palabra, _ in freq_word]
     cadena_palabras = ', '.join(palabras)
-    #print("freq_word"+freq_word)
+
     #print("palabras"+palabras)
     print("cadena"+cadena_palabras)
+
     return palabras
 
 text0 = '''La oposición salió a cuestionar el fallo judicial que ordenó la liberación de "Chocolate" Rigau, al asegurar que tendría el objetivo de garantizar el silencio del acusado y, de esa forma, evitar un pronto esclarecimiento del supuesto entramado de corrupción que ventilaron las maniobras perpetradas en los cajeros automáticos de un banco de La Plata. Entre los referentes opositores también crece el temor de que el hecho provoque un crecimiento del discurso antipolítica.
