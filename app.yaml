@@ -1,0 +1,8 @@
+runtime: python
+env: flex
+instance_class: F2
+service: python-app
+entrypoint: gunicorn -b :$PORT main:app
+
+runtime_config:
+    operating_system: "ubuntu22"
