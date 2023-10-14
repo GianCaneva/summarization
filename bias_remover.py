@@ -47,5 +47,5 @@ def remove_bias(texto):
     return text_without_adjetives.strip()
 
 # Sample
-texto_ejemplo = "Este es un hermoso, cálido y soleado día de verano."
-texto_sin_adjetivos = remove_bias(texto_ejemplo)
+#texto_ejemplo = "Este es un hermoso, cálido y soleado día de verano."
+#texto_sin_adjetivos = remove_bias(texto_ejemplo)

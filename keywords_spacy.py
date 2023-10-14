@@ -4,10 +4,11 @@ from spacy.lang.es.stop_words import STOP_WORDS
 from string import punctuation
 from collections import Counter
 from heapq import nlargest
-nlp = spacy.load("es_dep_news_trf")
+
 
 def getKeywords(request):
 
+    nlp = spacy.load(name="es_dep_news_trf")
     text = request.data.decode('utf-8')
     doc=nlp(text.lower())
 

@@ -1,0 +1,7 @@
+Flask==2.3.3
+gunicorn==20.1.0
+spacy>=3.0.0,<4.0.0
+es_dep_news_trf @ https://github.com/explosion/spacy-models/releases/download/es_dep_news_trf-3.6.1/es_dep_news_trf-3.6.1-py3-none-any.whl
+
+gcloud builds submit --tag gcr.io/unchainednews/receive_text
+gcloud run deploy --image gcr.io/unchainednews/receive_text
