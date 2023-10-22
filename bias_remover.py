@@ -1,12 +1,12 @@
-import spacy
-#Requirements
+#Requirements to run locally
 #pip3 install spacy
 #python3 -m spacy download es_core_news_lg
+import spacy
 
-
+## Process responsible for detecting types of bias and remove them. POS technique applied
 def remove_bias(texto):
     # Loads spacy module
-    nlp = spacy.load("es_dep_news_trf") #es_dep_news_trf/es_core_news_lg
+    nlp = spacy.load("es_dep_news_trf") #other possible models es_dep_news_trf/es_core_news_lg
     
     # Text process
     doc = nlp(texto)
@@ -46,6 +46,3 @@ def remove_bias(texto):
     # return text without adjetives and extra spaces in the text
     return text_without_adjetives.strip()
 
-# Sample
-#texto_ejemplo = "Este es un hermoso, cálido y soleado día de verano."
-#texto_sin_adjetivos = remove_bias(texto_ejemplo)

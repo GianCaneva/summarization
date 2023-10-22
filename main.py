@@ -13,6 +13,7 @@ from bias_remover import remove_bias
 from summarization_spacy import summarize_text
 from keywords_spacy import getKeywords
 
+from title_generator import generate_summary
 #To run: python3 main.py
 
 app = Flask(__name__)
@@ -35,7 +36,7 @@ def receive_text():
 def receive_title():
     try:
         # Pre-trained model responsible for summmarizing text
-        response = remove_bias(request)
+        response = remove_bias(generate_summary(request))
         return json.dumps(response, ensure_ascii=False), 200
        
     except Exception as e:
@@ -56,8 +57,8 @@ def receive_keywords():
         response = {'error': 'There was an error processing the request.'}
         return jsonify(response), 500
     
-@app.route('/api/baias', methods=['POST'])
-def receive_unbaiased():
+@app.route('/api/bias', methods=['POST'])
+def receive_unbiased():
     try:
         # Pre-trained model responsible for summmarizing text
         response = remove_bias(request)
