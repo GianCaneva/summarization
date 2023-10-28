@@ -6,7 +6,7 @@ from collections import Counter
 from heapq import nlargest
 nlp = spacy.load("es_dep_news_trf")
 
-
+## Process responsible for summarizing articles and create a new one that includes all of them but shorter
 def summarize_text(request):
 
     text = request.data.decode('utf-8')
